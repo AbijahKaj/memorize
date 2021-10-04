@@ -12,7 +12,12 @@ This is a library created by me to try out popular tools such as Travis, Packagi
 * Calculate an E-factor for an item based on the old factor (or no factor) and a response quality.
 
 ## Installation
-Memorize is installed through [Composer](http://getcomposer.org/doc/00-intro.md). Add the following to your `composer.json` file.
+Memorize is installed through [Composer](http://getcomposer.org/doc/00-intro.md). 
+Run this command 
+```
+composer require abijahkaj/memorize
+```
+Or add the following to your `composer.json` file.
 
 ```js
 {
@@ -29,4 +34,5 @@ SM is a family of algorithms made popular by the SuperMemo software package. The
 Run PHPUnit with `$ phpunit` in the root directory.
 
 ## Author
-* Shahin Zarrabi - shahin@wiwo.se - [@wiwofone](http://twitter.com/wiwofone) - http://www.wiwo.se
+* Shahin Zarrabi - shahin@wiwo.se - [@wiwofone](https://twitter.com/wiwofone) - https://www.wiwo.se
+* Abijah Kajabika - me@realabijah.com [@abijahkaj](https://twitter.com/abijahkaj) - https://realabijah.com
