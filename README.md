@@ -34,5 +34,5 @@ SM is a family of algorithms made popular by the SuperMemo software package. The
 Run PHPUnit with `$ phpunit` in the root directory.
 
 ## Author
-* Shahin Zarrabi - shahin@wiwo.se - [@wiwofone](https://twitter.com/wiwofone) - https://www.wiwo.se
-* Abijah Kajabika - me@realabijah.com [@abijahkaj](https://twitter.com/abijahkaj) - https://realabijah.com
+* Shahin Zarrabi - shahin@wiwo.se - [@wiwofone](https://twitter.com/wiwofone) - http://www.wiwo.se
+* Abijah Kajabika - me@realabijah.com - [@abijahkaj](https://twitter.com/abijahkaj) - https://realabijah.com
