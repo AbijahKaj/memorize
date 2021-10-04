@@ -15,6 +15,8 @@
  
 namespace Memorize;
  
+use RangeException;
+
 class SM2
 {
 
@@ -30,7 +32,7 @@ class SM2
      * @throws RangeException if the number of repetitions is lower than 1
      * @return float A ceiled value of the interval (in days)
      */
-    public function calcInterval($time = 1, $factor = 2.5)
+    public function calcInterval($time = 1, $factor = 2.5): float
     {
         if ($time < 1) {
             throw new \RangeException('The number of repetitions must be 1 or higher');
@@ -56,13 +58,13 @@ class SM2
      * @param int $oldFactor The item's old E-factor
      * @param int $quality   The quality of the response to the item
      *
-     * @throws RangeException if the quality is not between 0 and 5
+     * @throws RangeException if the quality is not between 0 and 4
      * @return float The item's new E-factor
      */
     public function calcNewFactor($oldFactor = 2.5, $quality = 4)
     {
-        if ($quality > 5 || $quality < 0) {
-            throw new \RangeException('Quality must be between 0 and 5');
+        if ($quality > 4 || $quality < 0) {
+            throw new \RangeException('Quality must be between 0 and 4');
         }
         
         $newFactor = $oldFactor+(0.1-(5-$quality)*(0.08+(5-$quality)*0.02));

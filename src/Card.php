@@ -27,14 +27,14 @@ class Card implements \JsonSerializable
      * 
      * Creates a new flash card with either default or custom settings.
      * 
-     * @param String  $question            Flash card quesiton
+     * @param String  $question            Flash card question
      * @param String  $answer              Flash card answer
      * @param int     $numberOfRepeats     How many times the card has been repeated
      * @param int     $factor              The card's current E-factor
      * @param int     $nextTime            The next time the card should be repeated as UNIX timestamp
      */
     public function __construct($question = null, $answer = null, $numberOfRepeats = 0, 
-                                    $factor = 2.5, $nextTime = null)
+                                    $factor = 2, $nextTime = null)
     {
         if (is_null($nextTime)) {
             $nextTime = time();
@@ -46,14 +46,14 @@ class Card implements \JsonSerializable
         $this->factor = $factor;
         $this->nextTime = $nextTime;
     }
-    
+
     /**
      * Set flash card question
      * @param string $question
      *
-     * @return \Memorize\Card
+     * @return Card
      */
-    public function setQuestion($question)
+    public function setQuestion(string $question): Card
     {
         $this->question = $question;
         return $this;
@@ -68,14 +68,14 @@ class Card implements \JsonSerializable
     {
         return $this->question;
     }
-    
+
     /**
      * Set flash card answer
      * @param string $answer
      *
-     * @return \Memorize\Card
+     * @return Card
      */
-    public function setAnswer($answer)
+    public function setAnswer(string $answer): Card
     {
         $this->answer = $answer;
         return $this;
@@ -85,18 +85,18 @@ class Card implements \JsonSerializable
      * Get flash card answer
      * @return string
      */
-    public function getAnswer()
+    public function getAnswer(): ?string
     {
         return $this->answer;
     }
-    
+
     /**
      * Set number of repetitions
      * @param int $numberOfRepeats
      *
-     * @return \Memorize\Card
+     * @return Card
      */
-    public function setNumberOfRepeats($numberOfRepeats)
+    public function setNumberOfRepeats(int $numberOfRepeats): Card
     {
         $this->numberOfRepeats = $numberOfRepeats;
         return $this;
@@ -106,19 +106,19 @@ class Card implements \JsonSerializable
      * Get number of repetitions
      * @return int
      */
-    public function getNumberOfRepeats()
+    public function getNumberOfRepeats(): int
     {
         return $this->numberOfRepeats;
-    } 
-    
+    }
+
     /**
      * Set E-factor
      * @param float $factor
      *
      *
-     * @return \Memorize\Card
+     * @return Card
      */
-    public function setFactor($factor)
+    public function setFactor(float $factor): Card
     {
         $this->factor = $factor;
         return $this;
@@ -132,14 +132,14 @@ class Card implements \JsonSerializable
     {
         return $this->factor;
     }
-    
+
     /**
      * Set next repetition occurrence (UNIX timestamp)
      * @param int $nextTime
      *
-     * @return \Memorize\Card
+     * @return Card
      */
-    public function setNextTime($nextTime)
+    public function setNextTime(int $nextTime): Card
     {
         $this->nextTime = $nextTime;
         return $this;
@@ -149,23 +149,23 @@ class Card implements \JsonSerializable
      * Get next repetition occurrence (UNIX timestamp)
      * @return int
      */
-    public function getNextTime()
+    public function getNextTime(): ?int
     {
         return $this->nextTime;
     }
 
     /**
      * Repeat the card
-     * 
+     *
      * This method takes an instance of SM2 and a quality factor to update
      * the flash card accordingly after a repetition.
-     * 
-     * @param \Memorize\SM2 $SM2        An instance of an SM2 object
-     * @param int           $quality    The quality of the answer
+     *
+     * @param SM2 $SM2 An instance of an SM2 object
+     * @param int $quality The quality of the answer
      */
-    public function repeat($SM2, $quality)
+    public function repeat(SM2 $SM2, int $quality)
     {
-        if ($quality >= 3) {
+        if ($quality >= 2) {
             $this->numberOfRepeats++;
         } else {
             $this->numberOfRepeats = 1;
@@ -181,9 +181,9 @@ class Card implements \JsonSerializable
     /**
      * Encode the card in JSON
      *
-     * @return String The JSON encoded Card object
+     * @return array The JSON encoded Card object
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'question'        => $this->question,
@@ -203,13 +203,14 @@ class Card implements \JsonSerializable
     {
         return json_encode($this);
     }
-    
+
     /**
      * Create Card from JSON encoded string.
      *
      * @param String $json
+     * @return Card
      */
-    public static function fromJson($json)
+    public static function fromJson(string $json): Card
     {
         $card = json_decode($json, true);
         return new Card($card['question'],$card['answer'],$card['numberOfRepeats'],
@@ -219,9 +220,9 @@ class Card implements \JsonSerializable
     /**
      * Convert the Card object to an array.
      *
-     * @return Array Card object as array.
+     * @return array Card object as array.
      */
-    public function toArray()
+    public function toArray(): array
     {
         return array(
             'question'        => $this->question,
@@ -231,13 +232,14 @@ class Card implements \JsonSerializable
             'nextTime'        => $this->nextTime
         ); 
     }
-    
+
     /**
      * Create card from array.
      *
-     * @param Array $card
+     * @param array $card
+     * @return Card
      */
-    public static function fromArray(array $card)
+    public static function fromArray(array $card): Card
     {
         return new Card($card['question'],$card['answer'],$card['numberOfRepeats'],
                             $card['factor'],$card['nextTime']);

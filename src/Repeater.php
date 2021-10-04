@@ -67,9 +67,9 @@ class Repeater
         /* Remove the card from the queue */
         $card = $this->removeCard();
         
-        /* If the quality was below 4, or the card is set to be repeated again
+        /* If the quality was below 3, or the card is set to be repeated again
          * in less than a day, reinsert it to the queue. */
-        if ($quality < 4 || $card->getNextTime() - time() < 60*60*24) {
+        if ($quality < 3 || $card->getNextTime() - time() < 60*60*24) {
             $this->reinsertCard($card);
         }
     }
