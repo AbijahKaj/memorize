@@ -4,12 +4,17 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["SM-2", "supermemo", "spaced repetition"],
-    "homepage": "https://github.com/wiwofone/memorize",
+    "homepage": "https://github.com/abijah/memorize",
     "authors": [
         {
             "name": "Shahin Zarrabi",
             "email": "shahin@wiwo.se",
             "homepage": "http://wiwo.se"   
+        },
+        {
+            "name": "Abijah Kajabika",
+            "email": "me@realabijah.com",
+            "homepage": "https://realabijah.com"
         }
     ],    
     "require": {
