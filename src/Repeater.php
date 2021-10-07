@@ -52,14 +52,14 @@ class Repeater
     {
         return $this->queue->current();
     }
-    
+
     /**
      * Register an answer on a card and handle the card accordingly.
      *
      * @param SM2 $SM2 An instance of SM2
      * @param int $quality The quality of the answer
      */
-    public function answer($SM2, $quality)
+    public function answer(SM2 $SM2, int $quality)
     {
         /* Get the current card and call its repeat method */
         $this->getCard()->repeat($SM2, $quality);
